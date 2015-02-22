@@ -1,31 +1,23 @@
-<p id="notice"><%= notice %></p>
+<div class="col-sm-6 col-sm-offset-3">
+  <p id="notice"><%= notice %></p>
 
-<h1>Listing Posts</h1>
+  <div class="center-title">
+    <h1>care2share</h1>
+    <br>
+    <%= button_to 'new share', new_post_path, method: 'get', class: 'btn btn-default' %>
+    <br>
+    <h2>all shares</h2>
+  </div>
 
-<table>
-  <thead>
+  <% @posts.each do |post| %>
     <tr>
-      <th>Title</th>
-      <th>Content</th>
-      <th>Author</th>
-      <th colspan="3"></th>
+      <td><%= post.title %></td>
+      <td><%= post.content %></td>
+      <td><%= post.username_id %></td>
+      <td><% link_to 'Show', post %></td>
+      <td><% link_to 'Edit', edit_post_path(post) %></td>
+      <td><% link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
     </tr>
-  </thead>
+  <% end %>
 
-  <tbody>
-    <% @posts.each do |post| %>
-      <tr>
-        <td><%= post.title %></td>
-        <td><%= post.content %></td>
-        <td><%= post.author_id %></td>
-        <td><%= link_to 'Show', post %></td>
-        <td><%= link_to 'Edit', edit_post_path(post) %></td>
-        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Post', new_post_path %>
+</div>
