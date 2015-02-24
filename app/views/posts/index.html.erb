@@ -10,14 +10,16 @@
   </div>
 
   <% @posts.each do |post| %>
-    <tr>
-      <td><%= post.title %></td>
-      <td><%= post.content %></td>
-      <td><%= post.username_id %></td>
-      <td><% link_to 'Show', post %></td>
-      <td><% link_to 'Edit', edit_post_path(post) %></td>
-      <td><% link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    </tr>
+    <h1><%= link_to post.title, post %></h1>
+
+    <p>
+      <%= markdown(post.content) %>
+    </p>
+    <h5>Published <%= time_ago_in_words post.created_at %> ago</h5>
+
+    <% if post != @posts.last %>
+    <hr />
+    <% end %>
   <% end %>
 
 </div>
